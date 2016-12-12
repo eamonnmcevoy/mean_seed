@@ -1,6 +1,5 @@
 import {Component, OnInit } from "@angular/core";
 import {NgForm, FormGroup, FormControl, FormBuilder} from "@angular/forms";
-import { Uploader }      from 'angular2-http-file-upload';
 
 import { MessageService } from "./message.service";
 import { Message } from "./message.model";
