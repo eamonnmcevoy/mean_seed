@@ -1,25 +1,45 @@
-import { Component } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+
+import { User } from "./user.model";
+import { AuthenticationService } from "./authentication.service";
 
 @Component({
-    selector: 'app-signin',
-    templateUrl: './signin.component.html'
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styles: [`
+    .alt-button {
+        float: right;
+    }
+  `]
 })
-export class SigninComponent {
-    myForm: FormGroup;
+export class SigninComponent implements OnInit{
+  myForm: FormGroup;
 
-    onSubmit() {
-        console.log(this.myForm);
-        this.myForm.reset();
-    }
+  constructor(private authService: AuthenticationService, private router: Router) {}
 
-    ngOnInit() {
-        this.myForm = new FormGroup({
-            email: new FormControl(null, [
-                Validators.required,
-                Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-            ]),
-            password: new FormControl(null, Validators.required)
-        });
-    }
+  onSubmit() {
+    const user = new User(this.myForm.value.email, this.myForm.value.password);
+    this.authService.signin(user)
+      .subscribe(
+        data => {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userId', data.userId);
+          this.router.navigateByUrl('/');
+        },
+        error => console.error(error)
+      );
+    this.myForm.reset();
+  }
+
+  ngOnInit() {
+    this.myForm = new FormGroup({
+      email: new FormControl(null, [
+        Validators.required,
+        Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+      ]),
+      password: new FormControl(null, Validators.required)
+    });
+  }
 }

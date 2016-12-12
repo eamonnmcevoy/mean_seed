@@ -1,24 +1,16 @@
-<div class="col-md-8 col-md-offset-2">
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="email">Mail</label>
-            <input
-                    type="email"
-                    id="email"
-                    class="form-control"
-                    formControlName="email">
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input
-                    type="password"
-                    id="password"
-                    class="form-control"
-                    formControlName="password">
-        </div>
-        <button
-                class="btn btn-primary"
-                type="submit"
-                [disabled]="!myForm.valid">Submit</button>
-    </form>
+<div class="mdl-grid">
+  <div class="mdl-layout-spacer"></div>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <p>
+      <mdl-textfield label="Mail" type="email" formControlName="email" floating-label></mdl-textfield>
+    </p>
+    <p>
+      <mdl-textfield label="Password" type="password" formControlName="password" floating-label></mdl-textfield>
+    </p>
+    <p>
+      <button mdl-button (click)="onSubmit()"  [disabled]="!myForm.valid" mdl-button-type="raised" mdl-ripple mdl-colored="primary">Submit</button>
+      <a class="alt-button" mdl-button mdl-button-type="raised" mdl-ripple mdl-colored="primary" [routerLink]="['../signup']">Register</a>
+    </p>
+  </form>
+  <div class="mdl-layout-spacer"></div>
 </div>

@@ -1,5 +1,5 @@
-import {Component, OnInit } from "@angular/core";
-import {NgForm, FormGroup, FormControl, FormBuilder} from "@angular/forms";
+import {Component } from "@angular/core";
+import {FormGroup, FormControl, FormBuilder} from "@angular/forms";
 
 import { MessageService } from "./message.service";
 import { Message } from "./message.model";
@@ -7,8 +7,7 @@ import { Message } from "./message.model";
     selector: 'app-message-input',
     templateUrl: './message-input.component.html',
 })
-export class MessageInputComponent  implements OnInit  {
-    message: Message;
+export class MessageInputComponent  {
     public form: FormGroup;
     public content = new FormControl('');
 
@@ -28,15 +27,7 @@ export class MessageInputComponent  implements OnInit  {
         this.form.reset();
     }
 
-    onClear(form: NgForm) {
-        this.message = null;
-        form.resetForm();
-    }
-
-    ngOnInit() {
-        this.messageService.messageIsEdit.subscribe(
-            (message: Message) => this.message = message
-        );
-
+    onClear() {
+        this.form.reset();
     }
 }

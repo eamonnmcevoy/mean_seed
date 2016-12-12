@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 var appRoutes = require('./routes/app');
+var userRoutes = require('./routes/user');
 var messageRoutes = require('./routes/messages');
 
 var app = express();
@@ -32,6 +33,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
 app.use('/', appRoutes);
 

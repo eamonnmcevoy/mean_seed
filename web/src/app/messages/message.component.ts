@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 
 import { Message } from "./message.model";
 import { MessageService } from "./message.service";
-import {FormGroup} from "@angular/forms";
+import {AuthenticationService} from "../auth/authentication.service";
 
 @Component({
     selector: 'app-message',
@@ -44,19 +44,25 @@ export class MessageComponent {
       this.edit = false;
     }
 
+    isLoggedIn() {
+      return AuthenticationService.isLoggedIn();
+    }
+
     onEdit() {
       this.edit = true;
     }
 
     acceptChanges() {
       this.edit = false;
-      debugger;
-      this.messageService.editMessage(this.message);
+      this.messageService.updateMessage(this.message)
+        .subscribe(
+          result => console.log(result)
+        );
+
     }
 
     cancelChanges() {
       this.edit = false;
-        //this.messageService.editMessage(this.message);
     }
 
     onDelete() {

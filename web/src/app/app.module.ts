@@ -16,6 +16,7 @@ import {MessageListComponent} from "./messages/message-list.component";
 import {MessageComponent} from "./messages/message.component";
 import {HeaderComponent} from "./header.component";
 import {routing} from "./app.routing";
+import {AuthenticationService} from "./auth/authentication.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {routing} from "./app.routing";
     MdlModule,
     Ng2UploaderModule
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
