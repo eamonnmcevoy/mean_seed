@@ -1,0 +1,10 @@
+<form [formGroup]="form">
+  <h4 class="mdl-dialog__title">Add Message</h4>
+  <div class="mdl-dialog__content">
+    <mdl-textfield class="mdl-textfield--expandable"  rows="5" maxrows="10" type="text" label="Content" formControlName="content" floating-label autofocus></mdl-textfield>
+  </div>
+  <div class="mdl-dialog__actions">
+    <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
+    <button class="btn btn-primary" type="submit" (click)="onSubmit()">Save</button>
+  </div>
+</form>
