@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
       .subscribe(
         data => {
           console.log(data)
-          this.router.navigateByUrl('/signin');
+          this.router.navigateByUrl('/auth/signin');
         },
         error => console.error(error)
       );
