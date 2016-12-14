@@ -44,6 +44,10 @@ export class MessageComponent {
       this.edit = false;
     }
 
+    isMyMessage() {
+      return this.message.userId === localStorage.getItem('userId') && this.isLoggedIn();
+    }
+
     isLoggedIn() {
       return AuthenticationService.isLoggedIn();
     }

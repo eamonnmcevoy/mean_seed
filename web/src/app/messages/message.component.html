@@ -3,7 +3,7 @@
 
 <div class="mdl-card__supporting-text mdl-color-text--grey-600 author"> {{ message.username }} </div>
 
-<div *ngIf="isLoggedIn()" class="mdl-card__menu">
+<div *ngIf="isMyMessage()" class="mdl-card__menu">
   <a *ngIf="!edit" (click)="onEdit()"><i class="material-icons">mode edit</i></a>
   <a *ngIf="!edit" (click)="onDelete()"><i class="material-icons">delete</i></a>
 

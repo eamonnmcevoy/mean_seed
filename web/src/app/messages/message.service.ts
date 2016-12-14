@@ -63,7 +63,7 @@ export class MessageService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.patch(this.route + message.messageId + token, body, {headers: this.requestHeaders})
+    return this.http.patch(this.route +'/'+ message.messageId + token, body, {headers: this.requestHeaders})
       .map((response: Response) => response.json())
       .catch((error: Response) => Observable.throw(error.json()));
   }
@@ -73,7 +73,7 @@ export class MessageService {
     const token = localStorage.getItem('token')
       ? '?token=' + localStorage.getItem('token')
       : '';
-    return this.http.delete(this.route + message.messageId + token)
+    return this.http.delete(this.route +'/'+ message.messageId + token)
       .map((response: Response) => response.json())
       .catch((error: Response) => Observable.throw(error.json()));
   }
