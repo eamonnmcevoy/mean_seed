@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { AuthenticationService } from "./authentication.service";
 import { User } from "./user.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +17,7 @@ import { User } from "./user.model";
 export class SignupComponent implements OnInit {
   myForm: FormGroup;
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService, private router: Router) {}
 
   onSubmit() {
     const user = new User(
@@ -27,7 +28,10 @@ export class SignupComponent implements OnInit {
     );
     this.authService.signup(user)
       .subscribe(
-        data => console.log(data),
+        data => {
+          console.log(data)
+          this.router.navigateByUrl('/signin');
+        },
         error => console.error(error)
       );
     this.myForm.reset();
